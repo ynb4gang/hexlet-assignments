@@ -3,11 +3,17 @@ package exercise;
 import java.util.List;
 import java.util.Arrays;
 
-public class App {
-    public static void getCountOfFreeEmails(List<String> emailList) {
-        long countFreeEmails = emailList.stream()
-                .filter(email -> email.contains("gmail.com") || email.contains("hotmail.com") || email.contains("yandex.ru"))
-                .count();
-        System.out.println(countFreeEmails);
+class App {
+
+    private static final List<String> FREE_DOMAINS = Arrays.asList(
+        "gmail.com", "yandex.ru", "hotmail.com"
+    );
+
+    public static long getCountOfFreeEmails(List<String> emails) {
+        return emails
+            .stream()
+            .map(email -> email.split("@")[1])
+            .filter(email -> FREE_DOMAINS.contains(email))
+            .count();
     }
 }

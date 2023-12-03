@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Arrays;
 
 public class App {
-    public static Integer getCountOfFreeEmails(List<String> emailList) {
-        long countFreeEmails = emailList.stream()
+    public static void getCountOfFreeEmails(List<String> emailList) {
+        int countFreeEmails = emailList.stream()
                 .filter(email -> email.contains("gmail.com") || email.contains("hotmail.com") || email.contains("yandex.ru"))
                 .count();
-        return (int) countFreeEmails;
+        System.out.println(countFreeEmails);
     }
 }

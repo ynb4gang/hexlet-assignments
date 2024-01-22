@@ -37,5 +37,3 @@ public class Flat implements Home {
         }
     }
 }
-
-// END

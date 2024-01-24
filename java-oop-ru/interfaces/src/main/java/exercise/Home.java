@@ -1,9 +1,7 @@
 package exercise;
 
-// BEGIN
-public interface Home {
-    Double getArea();
-    int compareTo(Home otherhome);
-}
+interface Home {
+    int compareTo(Home home);
 
-// END
+    double getArea();
+}

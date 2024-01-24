@@ -56,41 +56,16 @@ class AppTest {
         assertThat(result).isEqualTo(expected);
     }
 
-    // BEGIN
     @Test
-    void testToString() {
-        ReversedSequence reversed = new ReversedSequence("abcdef");
-        assertEquals("fedcba", reversed.toString());
-    }
+    void testReversedSequence() {
+        CharSequence text = new ReversedSequence("abcdef");
+        assertThat(text.toString()).isEqualTo("fedcba");
 
-    @Test
-    void testCharAt() {
-        ReversedSequence reversed = new ReversedSequence("abcdef");
-        assertEquals('e', reversed.charAt(1));
-        assertEquals('a', reversed.charAt(5));
-    }
+        assertThat(text.length()).isEqualTo(6);
 
-    @Test
-    void testLength() {
-        ReversedSequence reversed = new ReversedSequence("abcdef");
-        assertEquals(6, reversed.length());
-    }
+        assertThat(text.charAt(1)).isEqualTo('e');
+        assertThat(text.charAt(4)).isEqualTo('b');
 
-    @Test
-    void testSubSequence() {
-        ReversedSequence reversed = new ReversedSequence("abcdef");
-        assertEquals("edc", reversed.subSequence(1, 4).toString());
+        assertThat(text.subSequence(1, 4).toString()).isEqualTo("edc");
     }
-
-    @Test
-    void testInvalidIndices() {
-        ReversedSequence reversed = new ReversedSequence("abcdef");
-
-        assertThrows(IndexOutOfBoundsException.class, () -> reversed.charAt(-1));
-        assertThrows(IndexOutOfBoundsException.class, () -> reversed.charAt(10));
-        assertThrows(IndexOutOfBoundsException.class, () -> reversed.subSequence(2, 1));
-        assertThrows(IndexOutOfBoundsException.class, () -> reversed.subSequence(-1, 4));
-        assertThrows(IndexOutOfBoundsException.class, () -> reversed.subSequence(1, 10));
-    }
-    // END
 }

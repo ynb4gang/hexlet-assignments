@@ -1,39 +1,33 @@
 package exercise;
 
-// BEGIN
-public class Flat implements Home {
+class Flat implements Home {
     private double area;
-    private double balconyArea;
     private int floor;
+    private double balconyArea;
 
-    // Конструктор для установки значений при создании объекта
-    public Flat(double area, double balconyArea, int floor) {
+    Flat(double area, double balconyArea, int floor) {
         this.area = area;
         this.balconyArea = balconyArea;
         this.floor = floor;
     }
 
-    @Override
-    public Double getArea() {
-        return area + balconyArea;
+    public double getArea() {
+        return this.area + balconyArea;
     }
 
-    @Override
     public String toString() {
-        return "Квартира площадью " + getArea() + " метров на " + floor + " этаже";
+        return String.format("Квартира площадью %s метров на %d этаже", getArea(), floor);
     }
 
-    @Override
     public int compareTo(Home another) {
-        double thisArea = this.getArea();
-        double anotherArea = another.getArea();
-
-        if (thisArea > anotherArea) {
-            return 1;
-        } else if (thisArea < anotherArea) {
-            return -1;
-        } else {
+        if (this.getArea() == another.getArea()) {
             return 0;
         }
+
+        if (this.getArea() > another.getArea()) {
+            return 1;
+        }
+
+        return -1;
     }
 }

@@ -1,33 +1,31 @@
 package exercise;
 
-// BEGIN
-public class Cottage implements Home {
+class Cottage implements Home {
     private double area;
     private int floorCount;
 
-    public void setArea(double newArea, int newFloorCount) {
-        this.area = newArea;
-        this.floorCount = newFloorCount;
+    Cottage(double area, int floorCount) {
+        this.area = area;
+        this.floorCount = floorCount;
     }
 
-    public Double getArea() {
-        return area + floorCount;
+    public double getArea() {
+        return this.area;
     }
 
     public String toString() {
-        return floorCount + " этажный коттедж площадью " + area + " метров";
+        return String.format("%d этажный коттедж площадью %s метров", floorCount, getArea());
     }
 
-    public int compareTo(Home otherCottage) {
-        double thisArea = this.getArea();
-        double otherArea = otherCottage.getArea();
-        if (thisArea > otherArea) {
-            return 1;
-        } else if (thisArea < otherArea) {
-            return -1;
-        } else {
+    public int compareTo(Home another) {
+        if (area == another.getArea()) {
             return 0;
         }
+
+        if (area > another.getArea()) {
+            return 1;
+        }
+
+        return -1;
     }
 }
-// END

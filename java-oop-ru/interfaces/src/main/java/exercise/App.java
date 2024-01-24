@@ -1,20 +1,20 @@
-package exercise;
+class App {
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-// BEGIN
-public class App implements Home {
-
-    public static List<String> buildApartmentsList(List<Home> homes, int n) {
-        Collections.sort(homes, (home1, home2) -> Double.compare(home1.getArea(), home2.getArea()));
-
-        List<String> result = homes.stream()
-                .limit(n)
-                .map(Object::toString)
-                .collect(Collectors.toList());
-
-        return result;
+    // new
+    public static List<String> buildApartmentsList(List<Home> apartments, int count) {
+        return apartments.stream()
+            .sorted(Home::compareTo)
+            .limit(count)
+            .map(Home::toString)
+            .toList();
+    }
+    // old
+    public static List<String> buildApartmentsList2(List<Home> apartments, int count) {
+        int normalizedCount = Math.min(count, apartments.size());
+        apartments.sort(Home::compareTo);
+        List<Home> sublist = apartments.subList(0, normalizedCount);
+        return sublist.stream()
+            .map(appartment -> appartment.toString())
+            .collect(Collectors.toList());
     }
 }
-// END

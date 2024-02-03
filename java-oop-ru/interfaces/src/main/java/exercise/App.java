@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // BEGIN
-class App extends Home {
+class App {
     public static List<String> buildApartmentsList(List<Home> homes, int n) {
         List<Home> sortedHomes = homes.stream()
                 .sorted(Comparator.comparing(Home::getArea))

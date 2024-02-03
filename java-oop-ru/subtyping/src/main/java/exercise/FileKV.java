@@ -1,49 +1,41 @@
 package exercise;
 
+// BEGIN
 import java.util.Map;
 
-public class FileKV implements KeyValueStorage {
+class FileKV implements KeyValueStorage {
 
-    private final String filePath;
-    private Map<String, String> storage;
+    private String filepath;
 
-    public FileKV(String filePath, Map<String, String> initialData) {
-        this.filePath = filePath;
-        this.storage = initialData;
-        saveToFile();
+    FileKV(String filepath, Map<String, String> initial) {
+        this.filepath = filepath;
+        initial.entrySet().stream().forEach(entry -> set(entry.getKey(), entry.getValue()));
     }
 
-    private void saveToFile() {
-        String serializedData = Utils.serialize(storage);
-        Utils.writeFile(filePath, serializedData);
-    }
-
-    private void loadFromFile() {
-        String serializedData = Utils.readFile(filePath);
-        storage = Utils.unserialize(serializedData);
-    }
-
-    @Override
     public void set(String key, String value) {
-        storage.put(key, value);
-        saveToFile();
+        String content = Utils.readFile(filepath);
+        Map<String, String> data = Utils.unserialize(content);
+        data.put(key, value);
+        Utils.writeFile(filepath, Utils.serialize(data));
     }
 
-    @Override
     public void unset(String key) {
-        storage.remove(key);
-        saveToFile();
+        String content = Utils.readFile(filepath);
+        Map<String, String> data = Utils.unserialize(content);
+        data.remove(key);
+        Utils.writeFile(filepath, Utils.serialize(data));
     }
 
-    @Override
     public String get(String key, String defaultValue) {
-        loadFromFile();
-        return storage.getOrDefault(key, defaultValue);
+        String content = Utils.readFile(filepath);
+        Map<String, String> data = Utils.unserialize(content);
+        return data.containsKey(key) ? data.get(key) : defaultValue;
     }
 
-    @Override
     public Map<String, String> toMap() {
-        loadFromFile(); 
-        return storage;
+        String content = Utils.readFile(filepath);
+        Map<String, String> data = Utils.unserialize(content);
+        return data;
     }
 }
+// END

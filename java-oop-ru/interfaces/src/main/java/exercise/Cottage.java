@@ -1,31 +1,31 @@
 package exercise;
 
-class Cottage implements Home {
+// BEGIN
+class Cottage extends Home {
     private double area;
-    private int floorCount;
+    private int floor;
 
-    Cottage(double area, int floorCount) {
+    public auth(double area, int floor) {
         this.area = area;
-        this.floorCount = floorCount;
+        this.floor = floor;
     }
 
     public double getArea() {
-        return this.area;
+        return area;
     }
 
     public String toString() {
-        return String.format("%d этажный коттедж площадью %s метров", floorCount, getArea());
+        return floor + " этажный коттедж площадью " + area + " метров";
     }
-
+    
     public int compareTo(Home another) {
-        if (area == another.getArea()) {
-            return 0;
-        }
-
-        if (area > another.getArea()) {
+        if (this.getArea() > another.getArea()) {
             return 1;
+        } else if ( this.getArea() == another.getArea()) {
+            return 0;
+        } else {
+            return -1;
         }
-
-        return -1;
     }
 }
+// END

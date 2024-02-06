@@ -1,5 +1,5 @@
 package exercise;
-
+import exercise.Circle;
 // BEGIN
 class App {
     public static void printSquare(Circle circle) {

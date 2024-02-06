@@ -3,11 +3,11 @@ import java.awt.Point;
 // BEGIN
 class Circle {
 
-    private Point cirlleCenter;
+    private Point circleCenter;
     private int circleRadius;
 
     Circle(Point center, int radius) {
-        this.cirlleCenter = center;
+        this.circleCenter = center;
         this.circleRadius = radius;
     }
 

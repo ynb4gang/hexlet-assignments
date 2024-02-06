@@ -1,6 +1,5 @@
 package exercise;
-import java.awt.Point;
-// BEGIN
+
 class Circle {
 
     private Point circleCenter;
@@ -23,4 +22,3 @@ class Circle {
         return Math.PI * Math.pow(circleRadius, 2);
     }
 }
-// END

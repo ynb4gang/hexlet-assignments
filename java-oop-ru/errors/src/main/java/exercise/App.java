@@ -1,6 +1,7 @@
 package exercise;
-import exercise.Circle;
-// BEGIN
+
+import java.awt.Point;
+
 class App {
     public static void printSquare(Circle circle) {
         try {
@@ -13,4 +14,3 @@ class App {
         }
     }
 }
-// END

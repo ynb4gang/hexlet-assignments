@@ -17,7 +17,7 @@ public final class App {
         app.get("/domains", ctx -> {
             List<String> domains = Data.getDomains();
             ctx.json(domains); 
-        })
+        });
         return app;
         // END
     }

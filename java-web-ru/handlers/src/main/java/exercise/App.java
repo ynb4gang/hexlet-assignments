@@ -1,6 +1,7 @@
 package exercise;
 
 import io.javalin.Javalin;
+import java.util.List;
 
 public final class App {
 
@@ -10,6 +11,7 @@ public final class App {
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
         });
+        List<String> phones = Data.getPhones();
         app.get("/phones", ctx -> {
             List<String> phones = Data.getPhones();
             ctx.json(phones);

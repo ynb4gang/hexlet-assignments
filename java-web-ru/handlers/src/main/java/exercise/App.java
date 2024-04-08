@@ -13,8 +13,8 @@ public final class App {
         });
         List<String> phones = Data.getPhones();
         app.get("/phones", ctx -> {
-            List<String> phones = Data.getPhones();
-            ctx.json(phones);
+            List<String> phone = Data.getPhones();
+            ctx.json(phone);
         });
         app.get("/domains", ctx -> {
             List<String> domains = Data.getDomains();

@@ -49,7 +49,7 @@ public class Application {
     }
 
     @PutMapping("/posts/{id}") 
-    static Page (@RequestParam String id, @RequestParam Post data){
+    static Post (@RequestParam String id, @RequestParam Post data){
         var post = posts.stream()
                         .filter(p -> p.getId().equals(id))
                         .findFirst();

@@ -29,7 +29,45 @@ public class Application {
     }
 
     // BEGIN
+    @GetMapping("/posts")
+    public ResponseEntity<List<Post>> index(
+        @RequestParam(defaultValue = 1) Integer page,
+        @RequestParam(defaultValue = 10) Integer limit) {
+
+        return ResponseEntity.ok()
+                            .header("X-Total-Count", String.valueOf(posts.size()))
+                            .body(posts.stream().skip((page - 1) * limit).limit(limit).toList());
+    }
+
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<Post> show(@PathVariable String id) {
+        var post = posts.stream()
+                        .filter(p -> p.getId().equals(id))
+                        .findFirst();
+        return PesponseEntity.of(post);
+    }
     
+    @PostMapping("/posts")
+    public ResponseEntity<Post> create(@RequestBody Post post ) {
+        posts.add(post);
+        URI location = URI.create("/posts");
+        return ResponceEntity.created(location).body(post);
+    }
+
+    @PutMapping("/posts/{id}")
+    public ResponseEntity<Post> update(@PathVariable String id, @RequestBody Post data) {
+        var somePost = posts.stream()
+                            .filter(p -> p.getId().equals(id))
+                            .findFirst();
+        var status = HttpStatus.NO_CONTENT;
+        if (somePost.isPresent()) {
+            var post = somePost.get();
+            post.setId(data.getId());
+            post.setTitle(data.getTitle());
+            post.setBody(data.getBody());
+        }
+        return ResponceEntity.status(status).body(data);
+    }
     // END
 
     @DeleteMapping("/posts/{id}")

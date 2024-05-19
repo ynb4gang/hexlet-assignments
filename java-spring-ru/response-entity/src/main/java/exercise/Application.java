@@ -31,8 +31,8 @@ public class Application {
     // BEGIN
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> index(
-        @RequestParam(defaultValue = 1) Integer page,
-        @RequestParam(defaultValue = 10) Integer limit) {
+        @RequestParam(defaultValue = "1") Integer page,
+        @RequestParam(defaultValue = "10") Integer limit) {
 
         return ResponseEntity.ok()
                             .header("X-Total-Count", String.valueOf(posts.size()))
@@ -44,14 +44,14 @@ public class Application {
         var post = posts.stream()
                         .filter(p -> p.getId().equals(id))
                         .findFirst();
-        return PesponseEntity.of(post);
+        return ResponseEntity.of(post);
     }
     
     @PostMapping("/posts")
     public ResponseEntity<Post> create(@RequestBody Post post ) {
         posts.add(post);
         URI location = URI.create("/posts");
-        return ResponceEntity.created(location).body(post);
+        return ResponseEntity.created(location).body(post);
     }
 
     @PutMapping("/posts/{id}")
@@ -66,7 +66,7 @@ public class Application {
             post.setTitle(data.getTitle());
             post.setBody(data.getBody());
         }
-        return ResponceEntity.status(status).body(data);
+        return ResponseEntity.status(status).body(data);
     }
     // END
 

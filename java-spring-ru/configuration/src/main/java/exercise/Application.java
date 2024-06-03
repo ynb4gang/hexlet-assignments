@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import  org.springframework.beans.factory.annotation.Autowired;
-import java.util.Collections;
 
 import exercise.model.User;
 import exercise.component.UserProperties;
@@ -23,10 +22,19 @@ public class Application {
     private List<User> users = Data.getUsers();
 
     // BEGIN
+    @Autowired
+    private UserProperties usersInfo;
+
     @GetMapping("/admins")
-    public List<User> showAdmins(List<User> users) {
-        Collection.sort(users);
-        return users;
+    public List<String> getAdmins() {
+
+        List<String> adminEmails = usersInfo.getAdmins();
+
+        return users.stream()
+            .filter(u -> adminEmails.contains(u.getEmail()))
+            .map(u -> u.getName())
+            .sorted()
+            .toList();
     }
     // END
 

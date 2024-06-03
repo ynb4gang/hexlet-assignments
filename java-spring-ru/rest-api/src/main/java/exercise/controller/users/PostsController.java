@@ -15,7 +15,7 @@ import exercise.Data;
 
 // BEGIN
 @RestController
-@GetMapping("/api")
+@RequestMapping("/api")
 public class PostsController {
     private List<Post> posts = Data.getPosts();
 

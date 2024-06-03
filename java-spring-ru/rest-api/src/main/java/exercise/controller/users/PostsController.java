@@ -21,7 +21,7 @@ public class PostsController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/users/{userId}/posts")
-    public Post(@PathVariable Integer userId, @RequestBody Post post) {
+    public Post create(@PathVariable Integer userId, @RequestBody Post post) {
         post.setUserId(UserId);
         post.add(post);
         return post;
@@ -33,5 +33,4 @@ public class PostsController {
                     .filter(p -> p.getUserId().equals(userId)).toList();
     }
 }
-
 // END

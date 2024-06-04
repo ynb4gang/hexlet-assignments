@@ -38,7 +38,7 @@ public class PeopleController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person create(@Valid @RequestBody Person person) {
+    public Person create(@RequestBody Person person) {
         return personRepository.save(person);
     }
 

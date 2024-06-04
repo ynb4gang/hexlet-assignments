@@ -42,7 +42,7 @@ public class PeopleController {
         return personRepository.save(person);
     }
 
-    @DeleteMapping("/people/{id}")
+    @DeleteMapping(path  = "/{id}")
     public void delete(@PathVariable long id) {
         personRepository.deleteById(id);
     }

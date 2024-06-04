@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     // BEGIN
-    runTimeOnly("com.h2database:h2")
+    runtimeOnly("com.h2database:h2")
     // END
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")

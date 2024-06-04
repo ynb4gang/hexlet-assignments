@@ -31,7 +31,7 @@ public class PeopleController {
     }
 
     // BEGIN
-    @GetMapping("/people")
+    @GetMapping("")
     public List<Person> index() {
         return personRepository.findAll();
     }

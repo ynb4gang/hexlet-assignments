@@ -19,7 +19,7 @@ import javax.annotation.processing.Generated;
 // BEGIN
 @Entity
 @Table(name = "tasks")
-@EntityListeners(AuditingEntityListeners.class)
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 public class Task {

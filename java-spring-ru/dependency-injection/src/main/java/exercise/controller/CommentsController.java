@@ -39,7 +39,7 @@ public Comment show(@PathVariable long id) {
 }
 
 @PostMapping(path = "")
-@HttpStatus(HttpStatus.CREATED)
+@ResponseStatus(HttpStatus.CREATED)
 public Comment create(@RequestBody Comment comment) {
     return commentRepository.save(comment);
 }

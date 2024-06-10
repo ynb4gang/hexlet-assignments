@@ -56,5 +56,10 @@ public Comment update(@PathVariable long id, @RequestBody Comment data) {
     
     return comment;
 }
+
+@DeleteMapping(path = "/{id}")
+public void destroy(@PathVariable long id) {
+    commentRepository.deleteById(id);
+}
 }
 // END

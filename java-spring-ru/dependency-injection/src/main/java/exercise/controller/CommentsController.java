@@ -50,7 +50,7 @@ public Comment update(@PathVariable long id, @RequestBody Comment data) {
                                         .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
 
     comment.setBody(data.getBody());
-    comment.setTitle(data.getTitle());
+    comment.setPostId(data.getPostId());
 
     commentRepository.save(comment);
     

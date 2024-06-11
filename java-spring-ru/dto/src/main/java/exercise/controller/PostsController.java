@@ -13,7 +13,6 @@ import exercise.repository.PostRepository;
 import exercise.exception.ResourceNotFoundException;
 import exercise.dto.PostDTO;
 import exercise.dto.commentDTO;
-import exercise.dto.CommentDTO;
 
 // BEGIN
 @RestController

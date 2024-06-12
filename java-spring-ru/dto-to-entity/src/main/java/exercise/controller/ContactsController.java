@@ -23,30 +23,30 @@ public class ContactsController {
     // BEGIN
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactDTO create(@RequestBody ContactCreateDTO contactData){
+    public ContactDTO create(@RequestBody ContactCreateDTO contactData) {
         var contact = toEntity(contactData);
         contactRepository.save(contact);
         var contactDto = toDTO(contact);
-        return ContactDTO;
+        return contactDto;
+    }
+
+    private Contact toEntity(ContactCreateDTO contactDto) {
+        var contact = new Contact();
+        contact.setFirstName(contactDto.getFirstName());
+        contact.setLastName(contactDto.getLastName());
+        contact.setPhone(contactDto.getPhone());
+        return contact;
     }
 
     private ContactDTO toDTO(Contact contact) {
         var dto = new ContactDTO();
         dto.setId(contact.getId());
         dto.setFirstName(contact.getFirstName());
-        dto.setLastName(contact.setLastName());
+        dto.setLastName(contact.getLastName());
         dto.setPhone(contact.getPhone());
-        dto.setUpdatedAt(contact.getUpdatedAt());
         dto.setCreatedAt(contact.getCreatedAt());
+        dto.setUpdatedAt(contact.getUpdatedAt());
         return dto;
-    }
-
-    private Contact toEntity(ContactCreateDTO contactdto) {
-        var contact = new Contact();
-        contact.setFirstName(contactDto.getFirstName());
-        contact.setLastName(contactDto.getLastName());
-        contact.setPhone(contactDto.getPhone());
-        return contact;
     }
 
 }

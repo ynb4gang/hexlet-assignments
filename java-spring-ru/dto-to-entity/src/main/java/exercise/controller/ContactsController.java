@@ -41,7 +41,7 @@ public class ContactsController {
         return dto;
     }
 
-    private Contact toEntity(ContactDTO contactdto) {
+    private Contact toEntity(ContactCreateDTO contactdto) {
         var contact = new Contact();
         contact.setFirstName(contactDto.getFirstName());
         contact.setLastName(contactDto.getLastName());

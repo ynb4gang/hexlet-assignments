@@ -14,8 +14,8 @@ import exercise.dto.ProductDTO;
 import exercise.model.Product;
 
 @Mapper(
-    NullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
-    componentModel = MappingConstants.componentModel.SPRING,
+    nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+    componentModel = MappingConstants.ComponentModel.SPRING,
     unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 

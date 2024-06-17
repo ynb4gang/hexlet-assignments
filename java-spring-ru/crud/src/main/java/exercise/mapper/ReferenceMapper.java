@@ -12,11 +12,9 @@ import jakarta.persistence.EntityManager;
 
 // BEGIN
 @Mapper(
-    componentModel = MappingConstants.ComponentModel.IGNORE
+        componentModel = MappingConstants.ComponentModel.SPRING
 )
-
 public abstract class ReferenceMapper {
-
     @Autowired
     private EntityManager entityManager;
 

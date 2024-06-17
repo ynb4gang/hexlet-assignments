@@ -45,8 +45,7 @@ public class User {
     private LocalDate createdAt;
 
     // BEGIN
-    @ManyToOne
-    @NotNull
-    private User assignee;
+    @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
+    private List<Task> tasks = new ArrayList<>();
     // END
 }

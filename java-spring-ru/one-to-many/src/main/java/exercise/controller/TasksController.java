@@ -55,7 +55,7 @@ public class TasksController {
     TaskDTO create(@Valid @RequestBody TaskCreateDTO taskData) {
         var task = taskMapper.map(taskData);
         var user = userRepository.findById(taskData.getAssigneeId())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User with not found"));
         task.setAssignee(user);
         taskRepository.save(task);
         var taskDto = taskMapper.map(task);
@@ -66,7 +66,7 @@ public class TasksController {
     @ResponseStatus(HttpStatus.OK)
     TaskDTO show(@PathVariable Long id) {
         var post = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Task with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Not Found: " + id));
         var taskDto = taskMapper.map(post);
         return taskDto;
     }
@@ -75,7 +75,7 @@ public class TasksController {
     @ResponseStatus(HttpStatus.OK)
     TaskDTO update(@RequestBody @Valid TaskUpdateDTO taskData, @PathVariable Long id) {
         var task = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Task with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Not Found"));
         var user =  userRepository.findById(taskData.getAssigneeId())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         taskMapper.update(taskData, task);

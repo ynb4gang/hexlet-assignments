@@ -8,7 +8,6 @@ import exercise.dto.TaskCreateDTO;
 import exercise.dto.TaskDTO;
 import exercise.dto.TaskUpdateDTO;
 import exercise.mapper.TaskMapper;
-import exercise.model.Post;
 import exercise.model.Task;
 import exercise.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

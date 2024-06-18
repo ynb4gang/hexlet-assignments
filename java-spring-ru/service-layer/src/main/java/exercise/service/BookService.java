@@ -20,33 +20,41 @@ import java.util.List;
 public class BookService {
     // BEGIN
     @Autowired
-    private AuthorRepository authorRepository;
-
+    private BookRepository bookRepository;
+    
     @Autowired
-    private AuthorMapper authorMapper;
+    private BookMapper bookMapper;
 
-    public AuthorDTO create(AuthorCreateDTO authorCreateDTO) {
-        var author = authorMapper.map(authorCreateDTO);
-        authorRepository.save(author);
-        return authorMapper.map(author);
+    public BookDTO create(BookCreateDTO bookCreateDTO) {
+        var book = bookMapper.map(bookCreateDTO);
+        bookRepository.save(book);
+        return bookMapper.map(book);
     }
 
-    public AuthorDTO findById(Long id) {
-        var author = authorRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Author With Id: " + id + " Not Found"));
-        return authorMapper.map(author);
+    public List<BookDTO> getAll() {
+        var books = bookRepository.findAll();
+        return books.stream()
+                .map(bookMapper::map)
+                .toList();
     }
 
-    public AuthorDTO update(AuthorUpdateDTO authorUpdateDto, Long id) {
-        var author = authorRepository.findById(id)
+    public BookDTO findById(Long id) {
+        var book = bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book With Id: " + id + " Not Found"));
+        return bookMapper.map(book);
+    }
+
+    public BookDTO update(BookUpdateDTO bookUpdateDTO, Long id) {
+        var book = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not Found"));
-        authorMapper.update(authorUpdateDTO, author);
-        authorRepository.save(author);
-        return authorMapper.map(author);
+        bookMapper.update(bookUpdateDTO, book);
+
+        bookRepository.save(book);
+        return bookMapper.map(book);
     }
 
     public void delete(Long id) {
-        authorRepository.deleteById(id);
-    }
+        bookRepository.deleteById(id);
+    } 
     // END
 }

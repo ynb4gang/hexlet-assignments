@@ -10,7 +10,7 @@ public class MaxThread extends Thread {
     }
 
     @Override
-    public void run(int[] numbers) {
+    public void run() {
         int maxim = numbers[0];
 
         for (int currentNumber : numbers) {

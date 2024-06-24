@@ -14,7 +14,7 @@ class App {
 
         minThread.start();
         LOGGER.log(Level.INFO, "Thread" + minThread.getName() + "started");
-        maxThread.join();
+        maxThread.start();
         LOGGER.log(Level.INFO, "Thread" + maxThread.getName() + "started");
 
         try {

@@ -10,7 +10,7 @@ public class MinThread extends Thread {
     }
 
     @Override
-    public int run(int[] numbers) {
+    public void run(int[] numbers) {
         int minim = numbers[0];
 
         for (int currentNumber : numbers) {
